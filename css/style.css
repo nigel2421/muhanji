@@ -35,7 +35,8 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 15px;
 }
 
-h1 { font-size: 2.8em; }
+/* Global H1 is now primarily for the centered name in the hero */
+h1 { font-size: 2.8em; } /* Default H1 size, overridden in .hero-content-wrapper h1 */
 h2 { font-size: 2.2em; text-align: center; margin-bottom: 40px;}
 h3 { font-size: 1.8em; margin-top: 30px;}
 
@@ -140,24 +141,39 @@ header .container {
 .hero {
     background: linear-gradient(rgba(240, 248, 255, 0.8), rgba(240, 248, 255, 0.8)), url('../images/abstract-bg.jpg') no-repeat center center/cover;
     padding: 80px 0;
-    text-align: center;
+    text-align: center; /* Centers the .hero-content-wrapper */
     color: var(--text-color);
+}
+
+.hero-content-wrapper { /* New wrapper for overall centering */
+    max-width: 900px; /* Constrain overall width for better readability */
+    margin: 0 auto; /* Center the wrapper */
+}
+
+.hero-content-wrapper h1 { /* Style for the centered name */
+    font-size: 3.8em; /* Make the name stand out more */
+    color: var(--primary-color);
+    margin-bottom: 40px; /* Space below the name */
+    text-align: center; /* Ensure it's centered */
 }
 
 .hero-content {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
+    flex-direction: row; /* Two columns on desktop */
+    align-items: flex-start; /* Align image and text to the top */
+    justify-content: center; /* Center the two columns horizontally */
+    gap: 50px; /* Gap between image and text */
+    text-align: left; /* Default text alignment for content inside */
 }
 
 .profile-pic {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+    width: 300px; /* Size for a prominent square */
+    height: 300px;
+    border-radius: 0; /* Square frame */
     overflow: hidden;
     border: 5px solid var(--primary-color);
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    flex-shrink: 0; /* Prevent image from shrinking */
 }
 
 .profile-pic img {
@@ -167,14 +183,9 @@ header .container {
 }
 
 .hero-text {
-    max-width: 800px;
-    text-align: center;
-}
-
-.hero-text h1 {
-    font-size: 3.5em;
-    margin-bottom: 10px;
-    color: var(--primary-color);
+    flex-grow: 1; /* Allow text to take up remaining space */
+    max-width: 600px; /* Keep text readable */
+    text-align: left; /* Ensure text aligns left */
 }
 
 .hero-text .title {
@@ -182,16 +193,25 @@ header .container {
     font-weight: 300;
     color: var(--dark-grey);
     margin-bottom: 20px;
+    text-align: left; /* Ensure title aligns left */
+}
+
+/* Ensure research interests list also aligns left */
+.hero-text ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 1em;
 }
 
 .social-links {
     margin-top: 20px;
+    text-align: left; /* Align social links to the left below the text */
 }
 
 .social-links a {
     color: var(--dark-grey);
     font-size: 1.8em;
-    margin: 0 15px;
+    margin-right: 15px; /* Adjust margin for left alignment */
     transition: color 0.3s ease;
 }
 
@@ -246,12 +266,12 @@ section:last-of-type {
 #cv .cv-section h3 {
     color: var(--primary-color);
     margin-bottom: 15px;
-    text-align: left;
+    text-align: left; /* Changed to left align CV section headings */
 }
 
 #cv .cv-section ul {
     list-style: none; /* Remove default list style */
-    margin-left: 0;
+    margin-left: 0; /* Changed from margin-inline: 0 to margin-left: 0 for broader compatibility */
 }
 
 #cv .cv-section li {
@@ -303,7 +323,8 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    h1 { font-size: 2.2em; }
+    /* Global H1 is handled by .hero-content-wrapper h1 now */
+    /* h1 { font-size: 2.2em; } */
     h2 { font-size: 1.8em; margin-bottom: 30px;}
     h3 { font-size: 1.5em; margin-top: 20px;}
 
@@ -311,17 +332,46 @@ footer {
         padding: 60px 0;
     }
 
-    .hero-content {
-        flex-direction: column;
-        text-align: center;
+    .hero-content-wrapper h1 {
+        font-size: 2.5em; /* Smaller font size for mobile name */
+        margin-bottom: 30px;
     }
 
-    .hero-text h1 {
-        font-size: 2.8em;
+    .hero-content {
+        flex-direction: column; /* Stack image and text vertically on mobile */
+        align-items: center; /* Center items when stacked */
+        gap: 30px;
+        text-align: center; /* Center content on mobile for the wrapper */
     }
+
+    .profile-pic {
+        width: 250px; /* Slightly smaller image on mobile */
+        height: 250px;
+    }
+
+    .hero-text {
+        text-align: center; /* Center text on mobile */
+    }
+
+    /* Remove specific H1 rule as it's now handled by .hero-content-wrapper h1 */
+    /* .hero-text h1 {
+        font-size: 2.8em;
+    } */
 
     .hero-text .title {
+        text-align: center; /* Center title on mobile */
         font-size: 1.2em;
+    }
+
+    .hero-text ul {
+        margin-left: auto; /* Adjust list centering on mobile if needed */
+        margin-right: auto;
+        text-align: left; /* Keep list items left-aligned within their container */
+        max-width: fit-content; /* Helps center the list itself */
+    }
+
+    .social-links {
+        text-align: center; /* Center social links on mobile */
     }
 
     .nav-links {
