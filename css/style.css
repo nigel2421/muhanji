@@ -167,8 +167,8 @@ header .container {
 }
 
 .profile-pic {
-    width: 300px; /* Size for a prominent square */
-    height: 300px;
+    width: 500px; /* Size for a prominent square */
+    height: 500px;
     border-radius: 0; /* Square frame */
     overflow: hidden;
     border: 5px solid var(--primary-color);
